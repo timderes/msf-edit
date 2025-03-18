@@ -11,12 +11,11 @@ import {
 import { getStaticPaths, makeStaticProperties } from "@/lib/getStatic";
 import { useTranslation } from "next-i18next";
 import { modals } from "@mantine/modals";
-import deleteAllMatchesFromDatabase from "@/lib/db/matches/deleteAllMatches";
 import { notifications } from "@mantine/notifications";
 import deleteAllProfilesFromDatabase from "@/lib/db/profiles/deleteAllProfiles";
 import { useRouter } from "next/router";
 import formatLocalizedRoute from "utils/navigation/formatLocalizedRoute";
-import { useLocalStorage, useSessionStorage } from "@mantine/hooks";
+import { useLocalStorage } from "@mantine/hooks";
 import SharedConfirmModalProps from "utils/modals/sharedConfirmModalProps";
 
 // TODO: Lazy code here. Refactor later
@@ -32,71 +31,6 @@ const storagePage = () => {
     key: "mantine-color-scheme-value",
   });
 
-  const [, , removeCurrentMatch] = useSessionStorage({
-    key: "currentMatch",
-  });
-
-  const handleDeleteAllProfiles = () => {
-    modals.openConfirmModal({
-      title: t("settings:storage.modals.confirmDeleteAllProfilesTitle"),
-      children: (
-        <Text size="sm">
-          {t("settings:storage.modals.confirmDeleteAllProfilesText")}
-        </Text>
-      ),
-
-      labels: { confirm: t("confirm"), cancel: t("cancel") },
-      onConfirm: () =>
-        void deleteAllProfilesFromDatabase().then(
-          () =>
-            notifications.show({
-              title: t(
-                "settings:storage.notifications.successDeleteAllProfilesTitle"
-              ),
-              message: t(
-                "settings:storage.notifications.successDeleteAllProfilesText"
-              ),
-            }),
-
-          void router
-            .push(
-              formatLocalizedRoute({
-                locale,
-                route: "/profileSetupIntro",
-              })
-            )
-            .then(() => {
-              window.ipc.removeDefaultProfileUUID();
-            })
-        ),
-      ...SharedConfirmModalProps,
-    });
-  };
-
-  const handleDeleteAllMatches = () =>
-    modals.openConfirmModal({
-      title: t("settings:storage.modals.confirmDeleteAllMatchesTitle"),
-      children: (
-        <Text size="sm">
-          {t("settings:storage.modals.confirmDeleteAllMatchesText")}
-        </Text>
-      ),
-
-      labels: { confirm: t("confirm"), cancel: t("cancel") },
-      onConfirm: () =>
-        void deleteAllMatchesFromDatabase().then(() =>
-          notifications.show({
-            title: t(
-              "settings:storage.notifications.successDeleteAllMatchesTitle"
-            ),
-            message: t(
-              "settings:storage.notifications.successDeleteAllMatchesText"
-            ),
-          })
-        ),
-      ...SharedConfirmModalProps,
-    });
-
   const handleResetApp = () => {
     modals.openConfirmModal({
       title: t("settings:storage.modals.confirmResetAppTitle"),
@@ -110,8 +44,6 @@ const storagePage = () => {
       onConfirm: () => {
         window.ipc.removeAppSettings();
         removeColorScheme();
-        removeCurrentMatch();
-        void deleteAllMatchesFromDatabase();
         void deleteAllProfilesFromDatabase();
 
         notifications.show({
@@ -122,7 +54,7 @@ const storagePage = () => {
         void router.push(
           formatLocalizedRoute({
             locale,
-            route: "/profileSetupIntro",
+            route: "/",
           })
         );
       },
@@ -144,14 +76,12 @@ const storagePage = () => {
         >
           <Stack>
             <Title fz="h3">{t("settings:storage.dangerZoneTitle")}</Title>
-            <Text mb="lg">{t("settings:storage.dangerZoneText")}</Text>
-            <Button variant="filled" onClick={() => handleDeleteAllProfiles()}>
-              {t("settings:storage.dangerZone.btn.label.deleteAllProfiles")}
-            </Button>
-            <Button variant="filled" onClick={() => handleDeleteAllMatches()}>
-              {t("settings:storage.dangerZone.btn.label.deleteAllMatches")}
-            </Button>
-            <Button variant="filled" onClick={() => handleResetApp()}>
+            <Text>{t("settings:storage.dangerZoneText")}</Text>
+            <Button
+              color="red"
+              variant="filled"
+              onClick={() => handleResetApp()}
+            >
               {t("settings:storage.dangerZone.btn.label.resetApp")}
             </Button>
           </Stack>

@@ -4,7 +4,7 @@ import {
   IconFileDatabase,
   IconLanguage,
   IconPalette,
-  IconUser,
+  IconSettings,
 } from "@tabler/icons-react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -32,9 +32,9 @@ const SettingsLayout = ({ children, route }: SettingsLayoutProps) => {
   const settingsNavigationLinks: SettingsLink[] = [
     {
       activeRoute: "/",
-      icon: <IconUser style={getDefaultIconSize()} />,
+      icon: <IconSettings style={getDefaultIconSize()} />,
       href: `/`,
-      label: t("routes.profile"),
+      label: t("routes.settings"),
     },
     {
       activeRoute: "colorScheme",
