@@ -1,4 +1,4 @@
-import { IconHome } from "@tabler/icons-react";
+import { IconHome, IconPencil, IconSettings } from "@tabler/icons-react";
 
 /**
  * `navbarRoutes` defines the routes for the application's navigation bar.
@@ -11,6 +11,16 @@ const navbarRoutes = [
     icon: <IconHome />,
     label: "routes.home",
     route: "/",
+  },
+  {
+    icon: <IconPencil />,
+    label: "routes.create",
+    route: "/create",
+  },
+  {
+    icon: <IconSettings />,
+    label: "routes.settings",
+    route: "/settings",
   },
 ];
 
