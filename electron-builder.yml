@@ -1,0 +1,19 @@
+appId: com.app.msfedit
+productName: MSF Edit
+copyright: Copyright © 2025 Tim Deres
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish:
+  - provider: github
+    protocol: https
+    # Required for auto updater
+    owner: timderes
+    repo: msf-edit
+win:
+  target: nsis
