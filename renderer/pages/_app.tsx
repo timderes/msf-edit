@@ -9,6 +9,7 @@ import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/charts/styles.css";
+import '@mantine/tiptap/styles.css';
 
 // Put overrides with custom stylesheets here
 import "../styles/globals.css";
