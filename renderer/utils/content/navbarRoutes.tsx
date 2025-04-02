@@ -24,4 +24,10 @@ const navbarRoutes = [
   },
 ];
 
+const createArticleRoute = {
+  label: "routes.create.article",
+  route: "/create/article",
+}
+
+export { createArticleRoute }
 export default navbarRoutes;
