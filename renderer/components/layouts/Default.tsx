@@ -26,7 +26,7 @@ import {
 } from "@tabler/icons-react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { APP_NAME, APP_VERSION } from "utils/constants";
+import { APP_NAME, APP_VERSION, TARGET_WEBSITE_VERSION } from "utils/constants";
 import navbarRoutes from "utils/content/navbarRoutes";
 import sendIPC from "utils/ipc/send";
 import formatLocalizedRoute from "utils/navigation/formatLocalizedRoute";
@@ -176,7 +176,7 @@ const DefaultLayout = ({
         <AppShell.Section p="lg">
           <Text c="dimmed" ta="center">
             <Text component="span" fz="xs" display="block">
-              {APP_VERSION}
+              {APP_VERSION}_{TARGET_WEBSITE_VERSION}
             </Text>
             <Text component="span" fz="xs" display="block">
               {upperFirst(CLIENT_OS)}
