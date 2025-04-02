@@ -13,6 +13,8 @@ import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import Superscript from "@tiptap/extension-superscript";
 import SubScript from "@tiptap/extension-subscript";
+import { Markdown } from "tiptap-markdown"
+
 import { useDisclosure } from "@mantine/hooks";
 
 const CreateArticlePage = () => {
@@ -28,12 +30,15 @@ const CreateArticlePage = () => {
             TextAlign.configure({
                 types: ["heading", "paragraph"],
             }),
+            Markdown
         ],
         immediatelyRender: false,
         content:
             "<h1>Neuer Artikel</h1> <p>Beginnen Sie, indem Sie diesen Text oder die Überschrift bearbeiten...</p>",
     });
     const [opened, { open, close }] = useDisclosure(false);
+
+    const markdownOutput = editor?.storage.markdown.getMarkdown();
 
     return (
         <DefaultLayout withNavbarOpen={false}>
