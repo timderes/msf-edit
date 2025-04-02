@@ -2,7 +2,7 @@ import { useTranslation } from "next-i18next";
 import { getStaticPaths, makeStaticProperties } from "@/lib/getStatic";
 
 import { Button, Drawer, ScrollArea } from "@mantine/core";
-import { RichTextEditor, Link } from "@mantine/tiptap";
+import { RichTextEditor, Link, RichTextEditorLabels } from "@mantine/tiptap";
 
 import DefaultLayout, { headerHeight } from "@/components/layouts/Default";
 
@@ -34,6 +34,47 @@ const CreateArticlePage = () => {
     });
     const [opened, { open, close }] = useDisclosure(false);
 
+    const LABELS: Partial<RichTextEditorLabels> = {
+        "alignCenterControlLabel": t("editor:alignCenterControlLabel"),
+        "alignJustifyControlLabel": t("editor:alignJustifyControlLabel"),
+        "alignLeftControlLabel": t("editor:alignLeftControlLabel"),
+        "alignRightControlLabel": t("editor:alignRightControlLabel"),
+        "blockquoteControlLabel": t("editor:blockquoteControlLabel"),
+        "boldControlLabel": t("editor:boldControlLabel"),
+        "bulletListControlLabel": t("editor:bulletListControlLabel"),
+        "clearFormattingControlLabel": t("editor:clearFormattingControlLabel"),
+        "codeBlockControlLabel": t("editor:codeBlockControlLabel"),
+        "codeControlLabel": t("editor:codeControlLabel"),
+        "colorPickerControlLabel": t("editor:colorPickerControlLabel"),
+        "colorPickerSave": t("editor:colorPickerSave"),
+        "h1ControlLabel": t("editor:h1ControlLabel"),
+        "h2ControlLabel": t("editor:h2ControlLabel"),
+        "h3ControlLabel": t("editor:h3ControlLabel"),
+        "h4ControlLabel": t("editor:h4ControlLabel"),
+        "h5ControlLabel": t("editor:h5ControlLabel"),
+        "h6ControlLabel": t("editor:h6ControlLabel"),
+        "highlightControlLabel": t("editor:highlightControlLabel"),
+        "hrControlLabel": t("editor:hrControlLabel"),
+        "italicControlLabel": t("editor:italicControlLabel"),
+        "linkControlLabel": t("editor:linkControlLabel"),
+        "linkEditorExternalLink": t("editor:linkEditorExternalLink"),
+        "linkEditorInputLabel": t("editor:linkEditorInputLabel"),
+        "linkEditorInputPlaceholder": t("editor:linkEditorInputPlaceholder"),
+        "linkEditorSave": t("editor:linkEditorSave"),
+        "orderedListControlLabel": t("editor:orderedListControlLabel"),
+        "redoControlLabel": t("editor:redoControlLabel"),
+        "strikeControlLabel": t("editor:strikeControlLabel"),
+        "subscriptControlLabel": t("editor:subscriptControlLabel"),
+        "superscriptControlLabel": t("editor:superscriptControlLabel"),
+        "tasksControlLabel": t("editor:tasksControlLabel"),
+        "tasksLiftLabel": t("editor:tasksLiftLabel"),
+        "tasksSinkLabel": t("editor:tasksSinkLabel"),
+        "underlineControlLabel": t("editor:underlineControlLabel"),
+        "undoControlLabel": t("editor:undoControlLabel"),
+        "unlinkControlLabel": t("editor:unlinkControlLabel"),
+        "unsetColorControlLabel": t("editor:unsetColorControlLabel"),
+    }
+
     const markdownOutput = editor?.storage.markdown.getMarkdown();
 
     return (
@@ -50,6 +91,7 @@ const CreateArticlePage = () => {
             </Drawer>
             <RichTextEditor
                 editor={editor}
+                labels={LABELS}
                 variant="subtle"
                 style={{
                     borderRadius: 0,
@@ -118,6 +160,6 @@ const CreateArticlePage = () => {
 
 export default CreateArticlePage;
 
-export const getStaticProps = makeStaticProperties(["common"]);
+export const getStaticProps = makeStaticProperties(["common", "editor"]);
 
 export { getStaticPaths };
