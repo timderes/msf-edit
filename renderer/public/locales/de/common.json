@@ -20,5 +20,13 @@
     "home": "Startseite",
     "create": "Erstellen",
     "settings": "Einstellungen"
-  }
+  },
+  "welcomeTitle": "Hallo, {{FIRST_NAME}}!",
+  "welcomeText": "Mit {{APP_NAME}} können Texte und Termine für die Webseite der MotorSportFreunde Plettenberg 1930 e.V. im DMV erstellt werden.",
+  "createArticle": "Neuer Artikel",
+  "createArticleDesc": "Einen neuen Artikel für die Webseite erstellen.",
+  "createArticleCTA": "Artikel erstellen...",
+  "createEvent": "Neuer Termin",
+  "createEventDesc": "Einen neuen Termin für die Webseite erstellen.",
+  "createEventCTA": "Termin erstellen..."
 }

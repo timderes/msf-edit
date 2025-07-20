@@ -20,5 +20,13 @@
     "home": "Home",
     "create": "Create",
     "settings": "Settings"
-  }
+  },
+  "welcomeTitle": "Hello, {{FIRST_NAME}}!",
+  "welcomeText": "With {{APP_NAME}}, you can create texts and appointments for the website of the MotorSportFreunde Plettenberg 1930 e.V. in the DMV.",
+  "createArticle": "New Article",
+  "createArticleDesc": "Create a new article for the website.",
+  "createArticleCTA": "Create Article...",
+  "createEvent": "New Event",
+  "createEventDesc": "Create a new event for the website.",
+  "createEventCTA": "Create Event..."
 }
